@@ -1,5 +1,21 @@
-from time import sleep
-from progressbar import progressbar
-for i in progressbar(range(100), redirect_stdout=True):
-    print('Some text', i)
-    sleep(0.1)
+import sys
+import time
+import chess.pgn
+
+pgn_stream = sys.stdin
+
+while True:
+    game = chess.pgn.read_game(pgn_stream)
+    if game is None:
+        break
+
+    board = game.end().board()
+    print(game.headers)
+    print(board)
+    print("Game finished with result:", game.headers.get("Result"))
+    print(game)
+    print("-" * 40)
+
+    time.sleep(10)
+
+
