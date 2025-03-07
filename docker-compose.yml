@@ -1,11 +1,10 @@
-version: "3.8"
-
 services:
   python-chess:
     build: 
       context: .
       dockerfile: Dockerfile
     container_name: python-chess-container
-    command: /bin/sh -c "zstdcat /data/chess-games.pgn.zst | python src/main.py"
+    stdin_open: true
+    tty: true
     volumes:
         - "./chess-games.pgn.zst:/data/chess-games.pgn.zst"
