@@ -10,7 +10,5 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY src/ ./src/
-
 COPY run.sh /usr/local/bin/analyse
 RUN chmod +x /usr/local/bin/analyse
